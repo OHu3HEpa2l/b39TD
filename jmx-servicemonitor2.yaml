@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ucbe-jmx
+  namespace: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+    - default
+
+  selector:
+    matchLabels:
+      app: ucbe-0
+
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
